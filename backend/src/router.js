@@ -13,7 +13,7 @@ import {
 } from "./middlewares/PokemonMiddlewares.js";
 const router = Router();
 
-router.get("/wild-pokemon", getFiveWildPokemons);
+router.get("/wild-pokemons", getFiveWildPokemons);
 router.get("/pokemon", getMyPokemons);
 router.get("/pokemon/:nickname", getPokemonByNickname);
 router.post("/pokemon", validadeSaveBody, savePokemon);

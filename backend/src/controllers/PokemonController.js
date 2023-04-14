@@ -5,28 +5,19 @@ import {
   findOneByNickname,
   updatePokemon,
 } from "../models/PokemonModel.js";
-import { generateFiveRandonIndex } from "../utils/generateFiveRandomIndex.js";
+import { getFiveRandomPokemonsByAPI } from "../utils/getFiveRandomPokemonsByAPI.js";
 import { objectIsEmpty } from "../utils/validator.js";
-import PokemonDataClass from "../models/PokemonDataClass.js";
-import axios from "axios";
 
 export const getFiveWildPokemons = async (request, response) => {
-  const randomIndexs = generateFiveRandonIndex();
-  //const pokemons = [];
-  randomIndexs.map((index) => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${index}`).then((response) => {
-      const data = response.data;
+  let pokemons = getFiveRandomPokemonsByAPI();
 
-      console.log(pokemon);
-    });
-    console.log(index);
-  });
+  console.log("lista" + pokemons.length);
 
   return response.status(200).json({
     code: 200,
     status: "OK",
     description: "Pokemons found.",
-    data: randomIndexs,
+    data: pokemons,
   });
 };
 
