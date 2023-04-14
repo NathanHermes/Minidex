@@ -1,0 +1,112 @@
+# Minidex
+
+    O Minidex é um projeto de site web completo. 
+    O back-end foi desenvolvido com Express (Framework para Node).
+    O front-end foi feito com ReactJS(Biblioteca JS).
+    O sistema foi construido baseado na arquitera RESTful, o mesmo propõe oferecer 
+        ao usuário uma experiência do jogo eletrônico Pokémon, de maneira mais simples. 
+    No site deve ser possível capturar um novo pokémon, edita-los, excluir-los 
+        além de ser possível buscar um pokémon pelo seu nickname e listar todos os seus pokémons capturados.
+
+=================================================================================================================
+
+## Stack Utilizadas
+
+    FRONT-END: ReactJs, Tailwind CSS
+    BACK-END: Node, Express, MySQL, Sequelize
+
+=================================================================================================================
+
+## Rodando localmente
+
+    Baixe o projeto
+
+    Entre no diretório do projeto
+
+        cd Nathan_Hermes
+
+    Instale as dependências 
+
+        npm install
+
+    Inicie o servidor 
+
+        npm run start
+
+=================================================================================================================
+
+## Variáveis de Ambiente
+
+    Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
+
+        - SERVER_PORT
+        - MYSQL_HOST
+        - MYSQL_USER
+        - MYSQL_PASSWORD
+        - MYSQL_DB
+        - MYSQL_PORT
+
+=================================================================================================================
+
+## Documentação da API
+
+#### Retorna todos os pokémons
+
+    ``` GET /pokemon ```
+    
+#### Retorna um pokémon
+
+    ``` GET /pokemon/:nickname ```
+
+#------------------------------------------------------------------------#
+| Parâmetro | Tipo   | Descrição                                         |
+|------------------------------------------------------------------------|
+| nickname  | string | Obrigatório. O nickname do pokémon que você busca |
+#------------------------------------------------------------------------#
+
+#### Salva um pokémon 
+
+O corpo da requisição deve ser enviado como um JSON.
+
+    ``` POST /pokemon ```
+
+#--------------------------------------------------------------------#
+| Atributos   | Tipo   | Descrição                                   |
+|--------------------------------------------------------------------|
+| nickname    | string | Obrigatório. O nickname do pokémon          |
+| name        | string | Obrigatório. O nome do pokémon              |
+| height      | number | Obrigatório. A altura do pokémon            |
+| weight      | number | Obrigatório. O peso do pokémon              |
+| urlImage    | string | Obrigatório. A url de uma imagem do pokémon |
+| description | string | Obrigatório. A descrição do pokémon         |
+#--------------------------------------------------------------------#
+
+#### Altera um pokémon 
+
+O corpo da requisição deve ser enviado como um JSON.
+
+    ``` PUT /pokemon/:id ```
+
+#-------------------------------------------------------------------------#
+| Parâmetro | Tipo   | Descrição                                          |
+|-------------------------------------------------------------------------|
+| id        | string | Obrigatório. O id do pokémon que você quer alterar |
+#-------------------------------------------------------------------------#
+
+#---------------------------------------------------------#
+| Atributos | Tipo   | Descrição                          |
+|---------------------------------------------------------|
+| nickname  | string | Obrigatório. O nickname do pokémon |
+| height    | string | Obrigatório. A altura do pokémon   |
+| weight    | string | Obrigatório. O peso do pokémon     |
+#---------------------------------------------------------#
+
+#### Apaga um pokémon
+
+    ``` DELETE /pokemon/:id ```
+
+#-------------------------------------------------------------------------#
+| Parâmetro | Tipo   | Descrição                                          |
+|-------------------------------------------------------------------------|
+| id        | string | Obrigatório. O id do pokémon que você quer deletar |
+#-------------------------------------------------------------------------#
