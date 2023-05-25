@@ -1,0 +1,197 @@
+# Minidex
+
+    O Minidex é um projeto de site web completo. 
+    O back-end foi desenvolvido com Express (Framework para Node). 
+    O front-end foi feito com ReactJS (Biblioteca JS). 
+    O sistema foi construído baseado na arquitetura RESTful, 
+    o mesmo propõe oferecer ao usuário uma experiência do jogo eletrônico Pokémon, de maneira mais simples.
+
+    O site conta com dois módulos, um de treinadores e outro de pokémons. 
+    No módulo de treinadores deve ser possível cadastrar, editar e excluir um treinador. 
+    No módulo de pokémon  deve ser possível capturar, editar, excluir, listar todos e buscar um pokémon pelo nickname;
+
+=================================================================================================================
+
+## Stack Utilizadas
+
+    FRONT-END: ReactJs, Tailwind CSS
+    BACK-END: Node, Express, MySQL, Sequelize
+
+=================================================================================================================
+
+## Rodando localmente
+
+    Baixe o projeto
+
+    Entre no diretório do projeto
+
+        cd Nathan_Hermes
+
+    Instale as dependências 
+
+        npm install
+
+    Inicie o servidor 
+
+        npm run start
+
+=================================================================================================================
+
+## Variáveis de Ambiente
+
+    Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
+
+        - SERVER_PORT
+        - MYSQL_HOST
+        - MYSQL_USER
+        - MYSQL_PASSWORD
+        - MYSQL_DB
+        - MYSQL_PORT
+        - JWT_KEY
+
+=================================================================================================================
+
+## Documentação da API
+
+    Todas as requisições, com exceção a de login, devem possir um campo Authorization, 
+    com o token gerado e retornado pelo requisição login.
+
+    Todas as resposta das requisição seguem o padrão abaixo. As respostas estão no formato JSON
+    #----------------------------------------------------------------------#
+    | Atributos   | Tipo   | Descrição                                     |
+    |----------------------------------------------------------------------|
+    | code        | number | Código HTTP de status da requisição           |
+    | status      | string | Status HTTP da requisição                     |
+    | description | string | Breve descrição da situação                   |
+    | data        | object | Objeto com os dados de resposta da requisição |
+    #----------------------------------------------------------------------#
+
+### Módulo de treinadores
+
+#### Loga no sistema
+
+    ``` POST /login ```
+
+    O corpo da requisição deve conter as informações da tabela abaixo e ser enviado no formato JSON
+    #-------------------------------------------------------------------------#
+    | Atributos | Tipo   | Descrição                                          |
+    |-------------------------------------------------------------------------|
+    | email     | string | Obrigatório. O email do treinador que deseja logar |
+    | password  | string | Obrigatório. A senha do treinador que deseja logar |
+    #-------------------------------------------------------------------------#
+
+#### Retorna todos os treinadores
+
+    ``` GET /trainer ```
+
+#### Retorna um treinador
+
+    ``` GET /trainer/:email ```
+
+    #----------------------------------------------------------------------#
+    | Parâmetro | Tipo   | Descrição                                       |
+    |----------------------------------------------------------------------|
+    | email     | string | Obrigatório. O email do treinador à ser buscado |
+    #----------------------------------------------------------------------#
+
+#### Salva um treinador
+
+    ``` POST /trainer ```
+
+    O corpo da requisição deve conter as informações da tabela abaixo e ser enviado no formato JSON
+    #--------------------------------------------------------------------------#
+    | Atributos | Tipo   | Descrição                                           |
+    |--------------------------------------------------------------------------|
+    | name      | string | Obrigatório. O nome do treinador que deseja salvar  |
+    | email     | string | Obrigatório. O email do treinador que deseja salvar |
+    | password  | string | Obrigatório. A senha do treinador que deseja salvar |
+    #--------------------------------------------------------------------------#
+
+#### Altera um treinador
+
+    ``` PUT /trainer/:id ```
+
+    #--------------------------------------------------------------------#
+    | Parâmetro | Tipo   | Descrição                                     |
+    |--------------------------------------------------------------------|
+    | id        | string | Obrigatório. O id do treinador à ser alterado |
+    #--------------------------------------------------------------------#
+
+    O corpo da requisição deve conter as informações da tabela abaixo e ser enviado no formato JSON
+    #-------------------------------------------------------------------------------------#
+    | Atributos   | Tipo   | Descrição                                                    |
+    |-------------------------------------------------------------------------------------|
+    | name        | string | Obrigatório. O nome do treinador que deseja atualizar        |
+    | email       | string | Obrigatório. O email do treinador que deseja atualizar       |
+    | password    | string | Obrigatório. A senha do treinador que deseja atualizar       |
+    | experience  | number | Obrigatório. A experiencia do treinador que deseja atualizar |
+    #-------------------------------------------------------------------------------------#
+
+#### Apagar um treinador
+
+    ``` DELETE /trainer/:id
+
+    #--------------------------------------------------------------------#
+    | Parâmetro | Tipo   | Descrição                                     |
+    |--------------------------------------------------------------------|
+    | id        | string | Obrigatório. O id do treinador à ser deletado |
+    #--------------------------------------------------------------------#
+
+#### Retorna todos os pokémons
+
+    ``` GET /pokemon ```
+    
+#### Retorna um pokémon
+
+    ``` GET /pokemon/:nickname ```
+
+    #-----------------------------------------------------------------------#
+    | Parâmetro | Tipo   | Descrição                                        |
+    |-----------------------------------------------------------------------|
+    | nickname  | string | Obrigatório. O nickname do pokémon à ser buscado |
+    #-----------------------------------------------------------------------#
+
+#### Salva um pokémon 
+
+    ``` POST /pokemon ```
+
+    O corpo da requisição deve conter as informações da tabela abaixo e ser enviado no formato JSON
+    #-------------------------------------------------------------------#
+    | Atributos  | Tipo   | Descrição                                   |
+    |-------------------------------------------------------------------|
+    | nickname   | string | Obrigatório. O nickname do pokémon          |
+    | name       | string | Obrigatório. O nome do pokémon              |
+    | height     | number | Obrigatório. A altura do pokémon            |
+    | weight     | number | Obrigatório. O peso do pokémon              |
+    | urlImage   | string | Obrigatório. A url de uma imagem do pokémon |
+    | experience | string | Obrigatório. A experiência do pokémon       |
+    #-------------------------------------------------------------------#
+
+#### Altera um pokémon 
+
+    ``` PUT /pokemon/:id ```
+
+    #-------------------------------------------------------------------------#
+    | Parâmetro | Tipo   | Descrição                                          |
+    |-------------------------------------------------------------------------|
+    | id        | string | Obrigatório. O id do pokémon que você quer alterar |
+    #-------------------------------------------------------------------------#
+
+    O corpo da requisição deve conter as informações da tabela abaixo e ser enviado no formato JSON
+    #---------------------------------------------------------#
+    | Atributos | Tipo   | Descrição                          |
+    |---------------------------------------------------------|
+    | nickname  | string | Obrigatório. O nickname do pokémon |
+    | height    | string | Obrigatório. A altura do pokémon   |
+    | weight    | string | Obrigatório. O peso do pokémon     |
+    #---------------------------------------------------------#
+
+#### Apaga um pokémon
+
+    ``` DELETE /pokemon/:id ```
+
+    #-------------------------------------------------------------------------#
+    | Parâmetro | Tipo   | Descrição                                          |
+    |-------------------------------------------------------------------------|
+    | id        | string | Obrigatório. O id do pokémon que você quer deletar |
+    #-------------------------------------------------------------------------#
